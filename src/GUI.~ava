@@ -1,0 +1,18 @@
+
+/**
+ * Beschreiben Sie hier die Klasse GUI.
+ * 
+ * @author (Ihr Name) 
+ * @version (eine Versionsnummer oder ein Datum)
+ */
+public class GUI extends JFrame
+{
+    
+    /**
+     * Konstruktor für Objekte der Klasse GUI
+     */
+    public GUI()
+    {
+    }
+    
+}

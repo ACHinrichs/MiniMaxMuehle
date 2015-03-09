@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Queue()
+comment0.text=\r\n\ Eine\ leere\ Schlange\ wird\ erzeugt.\r\n
+comment1.params=
+comment1.target=boolean\ isEmpty()
+comment1.text=\r\n\ Die\ Anfrage\ liefert\ den\ Wert\ true,\ wenn\ die\ Schlange\ keine\ Objekte\r\n\ enthaelt,\ sonst\ liefert\ sie\ den\ Wert\ false.\r\n\ \r\n\ @return\ true,\ falls\ die\ Schlange\ leer\ ist,\ sonst\ false\r\n
+comment2.params=pObject
+comment2.target=void\ enqueue(java.lang.Object)
+comment2.text=\r\n\ Das\ Objekt\ pObjekt\ wird\ an\ die\ Schlange\ angehaengt.\r\n\ Falls\ pObject\ gleich\ null\ ist,\ bleibt\ die\ Schlange\r\n\ unveraendert.\r\n\ \r\n\ @param\ pObject\ das\ anzuhaengende\ Objekt\r\n
+comment3.params=
+comment3.target=void\ dequeue()
+comment3.text=\r\n\ Das\ erste\ Objekt\ wird\ aus\ der\ Schlange\ entfernt.\r\n\ Falls\ die\ Schlange\ leer\ ist,\ wird\ sie\ nicht\ \r\n\ veraendert.\r\n
+comment4.params=
+comment4.target=java.lang.Object\ front()
+comment4.text=\r\n\ Die\ Anfrage\ liefert\ das\ erste\ Objekt\ der\ Schlange.\r\n\ Die\ Schlange\ bleibt\ unveraendert.\ Falls\ die\ \r\n\ Schlange\ leer\ ist,\ wird\ null\ zur&uuml;ck\ gegeben.\r\n\ \r\n\ @return\ das\ erste\ Objekt\ der\ Schlange\ oder\ null,\ falls\ \r\n\ die\ Schlange\ leer\ ist.\r\n
+numComments=5

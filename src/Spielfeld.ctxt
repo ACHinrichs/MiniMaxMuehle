@@ -1,0 +1,47 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Spielfeld()
+comment1.params=pSpielfeld\ pSpielphase\ pSpieler\ pSteinEntfernen\ pRunde
+comment1.target=Spielfeld(int[][][],\ byte,\ byte,\ boolean,\ int)
+comment10.params=x\ y\ z
+comment10.target=boolean\ pruefeMuehle(int,\ int,\ int)
+comment11.params=x\ y\ z
+comment11.target=boolean\ pruefeZugMoeglichkeit(int,\ int,\ int)
+comment12.params=
+comment12.target=byte\ pruefeAufSieger()
+comment13.params=
+comment13.target=boolean\ pruefeAufEnde()
+comment14.params=x\ y\ z
+comment14.target=byte\ setzeStein(int,\ int,\ int)
+comment14.text=\r\n\ \r\n\ @result\ 0\ bedeutet\ illegaler\ Zug,\ 1\ bedutet\ zug\ erfolgreich,\ 2\ bedeutet\ zug\ erfolgreich,\ muele\ gebildet\r\n
+comment15.params=x\ y\ z
+comment15.target=byte\ entferneStein(int,\ int,\ int)
+comment15.text=\r\n\ \r\n\ @result\ 0\ bedeutet\ illegaler\ Zug,\ 1\ bedutet\ zug\ erfolgreich\r\n
+comment16.params=x\ y\ z\ zielX\ zielY\ zielZ
+comment16.target=byte\ bewegeStein(int,\ int,\ int,\ int,\ int,\ int)
+comment16.text=\r\n\ \r\n\ @result\ 0\ bedeutet\ illegaler\ Zug,\ 1\ bedutet\ zug\ erfolgreich,\ 2\ bedeutet\ zug\ erfolgreich,\ muele\ gebildet\r\n
+comment17.params=obj
+comment17.target=boolean\ equals(java.lang.Object)
+comment18.params=
+comment18.target=int\ bewerte()
+comment2.params=
+comment2.target=byte\ getSpielphase()
+comment2.text=\r\n\ \ \ \ public\ void\ setSpielphase(byte\ pPhase)\r\n\ \ \ \ {\r\n\ \ \ \ spielphase\ \=\ pPhase;\r\n\ \ \ \ }\r\n
+comment3.params=
+comment3.target=byte\ getSpieler()
+comment3.text=\r\n\ \ \ \ public\ void\ setSpieler(byte\ pSpieler)\r\n\ \ \ \ {\r\n\ \ \ \ spieler\ \=\ pSpieler;\r\n\ \ \ \ }\r\n
+comment4.params=
+comment4.target=int[][][]\ getSpielfeld()
+comment4.text=\r\n\ \ \ \ public\ void\ setSpielfeld(byte[][][]\ pSpielfeld)\r\n\ \ \ \ {\r\n\ \ \ \ spielfeld\ \=\ pSpielfeld;\r\n\ \ \ \ }\r\n
+comment5.params=
+comment5.target=boolean\ getSteinEntfernen()
+comment5.text=\r\n\ \ \ \ public\ void\ setSteinEntfernen(boolean\ pSteinEntfernen)\r\n\ \ \ \ {\r\n\ \ \ \ steinEntfernen\ \=\ pSteinEntfernen;\r\n\ \ \ \ }\r\n
+comment6.params=
+comment6.target=int\ getRunde()
+comment7.params=
+comment7.target=Spielfeld\ kopieren()
+comment8.params=aSpieler
+comment8.target=int\ zaehleSteine(byte)
+comment9.params=x\ y\ z
+comment9.target=boolean\ feldExistiert(int,\ int,\ int)
+numComments=19

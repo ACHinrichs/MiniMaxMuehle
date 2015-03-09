@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=aSpielfeld
+comment0.target=Computergegner(Spielfeld)
+comment1.params=aktuelleSituation
+comment1.target=void\ Ziehen(Spielfeld)
+numComments=2
