@@ -114,7 +114,7 @@ public class GUI extends JFrame {
 					lblAusgabe.setText("AKTION VERBOTEN!");
 				} else if(ergebniss == 1 ){
 					lblAusgabe.setText("Aktion Erfolgreich!");
-					computerzug();
+					//computerzug();
 				} else if(ergebniss == 2 ){
 					lblAusgabe.setText("Mühle Geschlossen!");
 				}
