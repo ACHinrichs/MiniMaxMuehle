@@ -9,7 +9,7 @@ import java.util.*;
 public class Spielfeld
 {
     private int[][][] spielfeld= new int[3][3][3];
-    private byte spielphase = 0;                    //Spielphase 0 = Setzen, Spielphase 1 = Ziehen, Spielphase 2 = Springen
+    private byte spielphase = 0;                    //Spielphase 0 = Setzen, Spielphase 1 = Ziehen,
     private byte spieler = 1;
     private int runde=1;
     private boolean steinEntfernen = false;
@@ -212,6 +212,15 @@ public class Spielfeld
         }
         return ende;
     }
+    
+    public boolean zugLegal(int x,int y,int z,int zielX,int zielY,int zielZ){
+    	return (zaehleSteine(spieler)==3)||//Der Spieler muss entweder s�ringen d�rfen, oder
+    		   (Math.abs(x-zielX)+Math.abs(y-zielY)<=1 && 
+    		   		(Math.abs(z-zielZ)==0 || 
+    		   			(Math.abs(x-zielX)+Math.abs(y-zielY)+Math.abs(z-zielZ)==1 &&
+    		   			((x==1 && y!=1) || 
+    		   			(x!=1 && y==1)))));
+    }
 
     /*
      * 
@@ -271,12 +280,11 @@ public class Spielfeld
     public byte bewegeStein(int x, int y, int z, int zielX, int zielY, int zielZ)
     {
         if((spieler != 0)&&//Das Spiel muss Laufen (es muss ein Spieler an der Reihe sein)
-        ((x!=zielX)&&(y!=zielY)&&(z!=zielZ))&&//...es muss sich um zwei unterschiedliche Felder Handeln ...
+        !((x==zielX)&&(y==zielY)&&(z==zielZ))&&//...es muss sich um zwei unterschiedliche Felder Handeln ...
         (feldExistiert(x,y,z))&&
         (feldExistiert(zielX,zielY,zielZ))&&//... beide müssen Existieren...
         (spielphase==1)&&//...wir dürfen uns nichtmehr in der setz-phase befinden...
-        ((Math.abs(x-zielX)+Math.abs(y-zielY)+Math.abs(z-zielZ)==1)||//entweder muss der Abstand der Felder genau 1 betragen ...
-            (zaehleSteine(spieler)==3))&&//... oder der SPieler der am zug ist darf schon Springen,...
+        (zugLegal(x,y,z,zielX,zielY,zielZ))&&//... der Zug muss legal sein,...
         (spielfeld[x][y][z]==spieler)&&//... der Stein der bewegt wird muss dem Spieler der am Zug ist gehören...
         (spielfeld[zielX][zielY][zielZ]==0)&&//... das Zielfeld muss frei sein...
         (!steinEntfernen)){//... und falls eine Mühle fertig geworden ist wurde der Stein schon entfernt

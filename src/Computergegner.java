@@ -7,7 +7,7 @@
  */
 public class Computergegner
 {
-    public int rekursionstiefe = 3;
+    public int rekursionstiefe = 4;
     
     private Spielbaum spielbaum;
     

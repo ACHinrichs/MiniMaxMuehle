@@ -113,8 +113,8 @@ public class GUI extends JFrame {
 				if(ergebniss == 0 ){
 					lblAusgabe.setText("AKTION VERBOTEN!");
 				} else if(ergebniss == 1 ){
-					lblAusgabe.setText("Aktion Erfolgreich!");
-					//computerzug();
+					lblAusgabe.setText("Bewegung Erfolgreich!");
+					computerzug();
 				} else if(ergebniss == 2 ){
 					lblAusgabe.setText("Mühle Geschlossen!");
 				}
@@ -141,7 +141,9 @@ public class GUI extends JFrame {
 	}
 	
 	private void computerzug(){
+		long startzeit = System.currentTimeMillis();
 		gegner.Ziehen(spielfeld);
+		lblAusgabe.setText("Computerzug in "+(System.currentTimeMillis()-startzeit)/1000+"s");
 		GUI.this.repaint();
 	}
 
