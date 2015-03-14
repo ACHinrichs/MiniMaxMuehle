@@ -264,12 +264,12 @@ public class Spielfeld
             spieler=(byte)-spieler;//nächster Spieler
             pruefeAufEnde();
             return 1;
-        }
+        }/*
         System.out.println("steinEntfernen: "+steinEntfernen);
         System.out.println("feldExistiert(x,y,z): "+feldExistiert(x,y,z));
         System.out.println("spielfeld[x][y][z]: "+spielfeld[x][y][z]);
         System.out.println("spieler: "+spieler);
-        System.out.println("pruefeMuehle(x, y, z): "+pruefeMuehle(x, y, z));
+        System.out.println("pruefeMuehle(x, y, z): "+pruefeMuehle(x, y, z));*/
         return 0; // Spiel ungültig
     }
 
@@ -303,13 +303,15 @@ public class Spielfeld
             pruefeAufEnde();
             return 1;
         }
-        System.out.println(feldExistiert(x,y,z)+" "+feldExistiert(zielX,zielY,zielZ));
+        //System.out.println(feldExistiert(x,y,z)+" "+feldExistiert(zielX,zielY,zielZ));
         return 0; // Spielzug ungültig
     }
 
     public boolean equals(Object obj)
     {
-        return (Arrays.equals(spielfeld,((Spielfeld)obj).getSpielfeld()))&&
+    	//if( (Arrays.equals(spielfeld,((Spielfeld)obj).getSpielfeld())))
+    	//	System.out.println("GLEICH!");
+        return (Arrays.deepEquals(spielfeld,((Spielfeld)obj).getSpielfeld()))&&
         (spielphase==((Spielfeld)obj).getSpielphase())&&
         (spieler==((Spielfeld)obj).getSpieler())&&
         (steinEntfernen==((Spielfeld)obj).getSteinEntfernen());

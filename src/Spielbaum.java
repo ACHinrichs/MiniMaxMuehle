@@ -139,7 +139,9 @@ public class Spielbaum
                             if(spielfeld.zaehleSteine(spielfeld.getSpieler())>3){
                                 int[][] zugrichtung = {{x-1,y,z},{x+1,y,z},{x,y-1,z},{x,y+1,z},{x,y,z-1},{x,y,z+1}};   //Definition aller potentiell möglichen zugrichtungen
                                 for(int i = 0; i<zugrichtung.length;i++){
-                                    if(Spielfeld.feldExistiert(zugrichtung[i][0], zugrichtung[i][1], zugrichtung[i][2])&&spielfeldArray[zugrichtung[i][0]][zugrichtung[i][1]][zugrichtung[i][2]]==0){
+                                    if(Spielfeld.feldExistiert(zugrichtung[i][0], zugrichtung[i][1], zugrichtung[i][2])&&
+                                    		spielfeldArray[zugrichtung[i][0]][zugrichtung[i][1]][zugrichtung[i][2]]==0&&
+                                    		spielfeld.zugLegal(x, y, z, zugrichtung[i][0], zugrichtung[i][1], zugrichtung[i][2])){
                                         Spielbaum kind = new Spielbaum(spielfeld.kopieren());
                                         byte ergebniss = kind.getSpielfeld().bewegeStein(x,y,z,zugrichtung[i][0],zugrichtung[i][1],zugrichtung[i][2]);
                                         if(ergebniss == 2){
