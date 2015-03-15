@@ -155,10 +155,9 @@ public class GUI extends JFrame {
 			panel.setEnabled(false);
 			return;
 		}
-		long startzeit = System.currentTimeMillis();
-		gegner.Ziehen(spielfeld);
+		long dauer = gegner.Ziehen(spielfeld);
 		lblAusgabe.setText("Computerzug in "
-				+ (System.currentTimeMillis() - startzeit) / 1000 + "s");
+				+ dauer / 1000 + "s");
 		if(spielfeld.pruefeAufEnde()){
 			panel.setEnabled(false);
 		}
@@ -192,5 +191,6 @@ public class GUI extends JFrame {
 		}
 		lblSpielinfo.setText(text);
 		repaint();
+		revalidate();
 	}
 }

@@ -228,22 +228,17 @@ public class Spielfeld
      */
     public byte setzeStein(int x, int y, int z)
     {
-        if((spielphase==0)&&//... wir im moment in der Setz-Phase sind ...
-        (feldExistiert(x,y,z))&&//wenn das Feld existiert...
+        if((spielphase==0)&&//wenn wir im moment in der Setz-Phase sind, ...
+        (feldExistiert(x,y,z))&&//... das Feld existiert,...
         (spielfeld[x][y][z]==0)&&//...das Feld frei ist...
         (!steinEntfernen)){//... und falls eine Mühle fertig gestellt wurde, der Stein schon entfernt wurde
+        	System.out.println("Spieler "+spieler+" setzt Stein auf "+x+","+y+","+z);
             spielfeld[x][y][z]=spieler;
             if(pruefeMuehle(x,y,z)){
                 steinEntfernen=true;
                 return 2; //Muehle erlangt
             }
-            spieler=(byte)-spieler;//nächster Spieler
-            if(spieler==1){
-                runde++;    //Ist der erste Spieler wieder am Zug, wurde eine neue Runde begonnen
-                if(runde == 10){
-                    spielphase++;   //Nach der 9. Runde haben alle SPieler ihre Steine gesetzt, ab jetzt muss gezogen werden
-                }
-            }
+            naechsterSpieler();
             return 1;
         }
         return 0; // Spiel ungültig
@@ -259,10 +254,10 @@ public class Spielfeld
         (feldExistiert(x,y,z))&&//...das feld gültig ist,...
         (spielfeld[x][y][z]==-spieler)&&//...auf dem Feld ein Frmder Sten steht...
         (!pruefeMuehle(x, y, z))){//und dr Stein in keiner Mühle steht
+        	System.out.println("Spieler "+spieler+" entfernt Stein auf "+x+","+y+","+z);
             spielfeld[x][y][z]=0;
             steinEntfernen = false;
-            spieler=(byte)-spieler;//nächster Spieler
-            pruefeAufEnde();
+            naechsterSpieler();
             return 1;
         }/*
         System.out.println("steinEntfernen: "+steinEntfernen);
@@ -288,19 +283,14 @@ public class Spielfeld
         (spielfeld[x][y][z]==spieler)&&//... der Stein der bewegt wird muss dem Spieler der am Zug ist gehören...
         (spielfeld[zielX][zielY][zielZ]==0)&&//... das Zielfeld muss frei sein...
         (!steinEntfernen)){//... und falls eine Mühle fertig geworden ist wurde der Stein schon entfernt
-
+        	System.out.println("Spieler "+spieler+" bewegt Stein von "+x+","+y+","+z+" nach "+zielX+","+zielY+","+zielZ);
             spielfeld[x][y][z]=0;
             spielfeld[zielX][zielY][zielZ]=spieler;
             if(pruefeMuehle(zielX,zielY,zielZ)){
                 steinEntfernen=true;
                 return 2; //Muehle erlangt
             }
-            spieler=(byte)-spieler;//nächster Spieler
-            if(spieler==1){
-                runde++;    //Ist der erste Spieler wieder am Zug, wurde eine neue Runde begonnen
-            }
-
-            pruefeAufEnde();
+            naechsterSpieler();
             return 1;
         }
         //System.out.println(feldExistiert(x,y,z)+" "+feldExistiert(zielX,zielY,zielZ));
@@ -335,6 +325,18 @@ public class Spielfeld
         ergebniss = ergebniss + Math.pow((spielfeld[0][1][0]+spielfeld[0][1][1]+spielfeld[0][1][2]), 3);
         ergebniss = ergebniss + Math.pow((spielfeld[2][1][0]+spielfeld[2][1][1]+spielfeld[2][1][2]), 3);
         return (int)Math.round(ergebniss);
+    }
+    
+    private void naechsterSpieler(){
+    	spieler = (byte)-spieler;
+        if(spieler==1){
+            runde++;    //Ist der erste Spieler wieder am Zug, wurde eine neue Runde begonnen
+            if(runde > 9){
+            	spielphase = 1;
+            }
+        }
+    	pruefeAufEnde();
+    	
     }
 
 }

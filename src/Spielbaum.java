@@ -117,10 +117,13 @@ public class Spielbaum
                 feldGerollt = feldGerollt && (spielfeldArray[x][y][0] == spielfeldArray[x][y][2]);
             }
         }
+        if(feldGerollt){
+        	obereGrenzeZ=1;
+        }
 
         for(int x = 0; x<spielfeldArray.length; x++){
             for(int y = 0; y<spielfeldArray[x].length; y++){
-                for(int z = 0; z<spielfeldArray[x][y].length; z++){
+                for(int z = 0; z<obereGrenzeZ; z++){
                     if(spielfeld.feldExistiert(x,y,z)){
                         if(spielfeld.getSpielphase()==0){
                             if(spielfeldArray[x][y][z]==0){

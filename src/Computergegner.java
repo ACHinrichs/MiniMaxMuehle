@@ -16,15 +16,18 @@ public class Computergegner
         spielbaum = new Spielbaum(aSpielfeld.kopieren());
     }
 
-    public void Ziehen(Spielfeld aktuelleSituation){
+    public long Ziehen(Spielfeld aktuelleSituation){
         spielbaum = spielbaum.finde(aktuelleSituation);//spielbaum auf aktuelle situation setzen
         
         if(spielbaum == null){
             spielbaum = new Spielbaum(aktuelleSituation.kopieren());
             System.out.println("Spielfeld musste neu angelegt werden");
         }
+
+		long startzeit = System.currentTimeMillis();
         //ZÃ¼ge berechnen;
         spielbaum.Minimax(rekursionstiefe);
+        long dauer = System.currentTimeMillis()-startzeit;
         
         //Besten zug suchen;
         Spielbaum besterZug = spielbaum.getErstesKind();
@@ -77,7 +80,6 @@ public class Computergegner
         }else{
             ergebniss = aktuelleSituation.bewegeStein(startX, startY, startZ, zielX, zielY, zielZ);
         }
-        System.out.println("ergebniss: "+ergebniss);
         if(ergebniss == 0){
             System.out.println("FEHLER! im zug des Computers, das sollte nicht passieren!");
         }else
@@ -90,6 +92,16 @@ public class Computergegner
                 System.out.println("FEHLER! Der computer hat versucht einen Stein zu entfernen!");
             }
         }
+        
         System.out.println("Computer ist gezogen");
+        
+        //Schließlich noch die Rekursionstiefe für den Nächsten zug anpassen
+        if(dauer < 5000 && aktuelleSituation.getSpielphase()>0){
+        	rekursionstiefe++;
+        }else if(dauer > 30000){
+        	rekursionstiefe--;
+        }
+        
+        return dauer;
     }
 }
