@@ -15,7 +15,7 @@ public class Spielbaum
     private Spielbaum erstesKind;
     private int kosten;
 
-    /*
+    /**
      * Konstruktor für den Spielbaum ohne Parameter
      */
     public Spielbaum(){
@@ -23,7 +23,7 @@ public class Spielbaum
         erstesKind=null;
     }
 
-    /*
+    /**
      * Konstruktor für den SPielbaum mit Parametern
      * 
      * @param aSpielfeld: das SPielfeld, das in dem Knoten gespeichert werden soll
@@ -34,33 +34,51 @@ public class Spielbaum
         spielfeld = aSpielfeld;
     }
 
-    /*
-     * Gibt den Nächsten Bruder des Knotens zurück
+    /**
+     * Gibt den naechsten Bruder des Knotens zurück
+     * @return Naechster bruder des Knotens
      */
     public Spielbaum getNeachstenBruder(){
         return bruder;
     }
 
+    /**
+     * Setzt den naechsten Bruder des Knotens
+     * @param aBruder naechster Bruder des Knotens
+     */
     public void setBruder(Spielbaum aBruder){
         bruder = aBruder;
     }
 
-    /*
-     * Gibt das erste Kind des aktuellen Knotens zurück, die anderen kinder können über dessen methode 
-     * {@link getNaechstenBruder()} verwendet werden
+    /**
+     * Gibt das erste Kind des aktuellen Knotens zurueck, die anderen kinder koennen ueber dessen methode {@link getNaechstenBruder()} verwendet werden 
+     * @return Erstes Kind des Knotens
      */
     public Spielbaum getErstesKind(){
         return erstesKind;
     }
 
+    /**
+     * Gibt das SPielfeld das in dem Knoten gespeichert ist zur�ck
+     * @return Spielfed
+     */
     public Spielfeld getSpielfeld(){
         return spielfeld;
     }
 
+    /**
+     * Gibt die Berechneten kosten des Knotens zur�ck
+     * @return Kosten
+     */
     public int getKosten(){
         return kosten;
     }
 
+    /**
+     * Sucht nach einer Bestimmten Spielsituation
+     * @param finden Die zu suchende SPielsituation
+     * @return der Knoten, in welchem die Situation gefunden wurde
+     */
     public Spielbaum finde(Spielfeld finden)
     {
         if(spielfeld.equals(finden)){
@@ -83,6 +101,11 @@ public class Spielbaum
         return aktNode;
     }
 
+    /**
+     * Fuert rekursief den MiniMax-Algorythmus aus
+     * @param tiefe die Maximale Rekursionstiefe des Algorythmusses
+     * @return Die Kosten des Knotens
+     */
     public int Minimax(int tiefe){
         if(spielfeld.pruefeAufEnde()){
             kosten = Integer.MAX_VALUE*(spielfeld.pruefeAufSieger());//Festlegen dew Wertes, entweder -Inf, +Inf oder 0
@@ -106,6 +129,9 @@ public class Spielbaum
         return kosten;
     }
 
+    /**
+     * Generiert alle m�glichen nachfolgenden Zuege
+     */
     public void generiereKinder(){
         int[][][] spielfeldArray = spielfeld.getSpielfeld();
         List kinder = new List();
@@ -194,6 +220,11 @@ public class Spielbaum
         }
     }
 
+    /**
+     * generiert eine Liste aller moeglichkleiten einen Gegnerischen Stein zu entfernen
+     * @param pSpielfeld die Situation, in welcher ein Stein entfernt werden soll
+     * @return Liste der moeglichen Entfernungen
+     */
     public static List generiereEntfernen(Spielfeld pSpielfeld){
         int[][][] spielfeldArray = pSpielfeld.getSpielfeld();
         List entfernt = new List();

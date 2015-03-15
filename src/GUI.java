@@ -12,7 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
-
+/**
+ * GUI für das Mühle-Spiel
+ * @author A. C. Hinrichs
+ * @version 2015-03-15
+ */
 public class GUI extends JFrame {
 
 	private Spielfeld spielfeld;
@@ -153,6 +157,9 @@ public class GUI extends JFrame {
 
 	}
 
+	/**
+	 * Die Methode sorgt dafür, das der Computer zieht
+	 */
 	private void computerzug() {
 		if(spielfeld.pruefeAufEnde()){
 			panel.setEnabled(false);
@@ -167,6 +174,9 @@ public class GUI extends JFrame {
 		updateGUI();
 	}
 
+	/**
+	 * Aktuallisiert die texte in der GUI
+	 */
 	private void updateGUI() {
 		String text = "Runde " + spielfeld.getRunde() + " - ";
 		switch (spielfeld.getSpieler()) {

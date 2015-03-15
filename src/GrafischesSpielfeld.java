@@ -1,10 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
 /**
- * Beschreiben Sie hier die Klasse GrafischesSpiefeld.
+ * Die Klasse GrafischesSpielfeld ist eine Visuelle Komponente zum Rendern des SPielfeldes
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author A. C. Hinrichs 
+ * @version 2015-03-15
  */
 public class GrafischesSpielfeld extends JPanel
 {
@@ -12,11 +12,19 @@ public class GrafischesSpielfeld extends JPanel
     private int[] markiert1 = {-1,-1,-1};
     private int[] markiert2 = {-1,-1,-1};
 
+    /**
+     * Konstruktor für die Klasse Grafisches SPielfeld
+     * @param s
+     */
     public GrafischesSpielfeld(Spielfeld s)
     {
         spielfeld = s;
     }
 
+    /**
+     * Überschreibt die Methode aus JPanel, zeichnet die Komponente
+     * @param g Die Grafik
+     */
     public void paintComponent(Graphics g)
     {
     	super.paintComponent(g);
@@ -66,6 +74,12 @@ public class GrafischesSpielfeld extends JPanel
         }
     }
 
+    /**
+     * Bestimmt das Feld unter der Cursorposition, welche übergeben wird
+     * @param xPos X-Koordinate des Cursors
+     * @param yPos Y-Koordinate des Cursors
+     * @return Koordinate des Feldes im Format {x,y,z}
+     */
     public int[] bestimmeFeldUnterCursor(int xPos,int yPos){
         int[] ergebniss = {-1,-1,-1};      
         int width = getWidth();
@@ -92,18 +106,34 @@ public class GrafischesSpielfeld extends JPanel
         return ergebniss;
     }
 
+    /**
+     * setzt das blau markierte Feld
+     * @param a Koordinate des Feldes
+     */
     public void setMarkiert1(int[] a){
     	markiert1 = a;
     }
     
+    /**
+     * Gibt die Koordinate des blau markierten feldes Zurück
+     * @return Koordinate des blau markierten Feldes
+     */
     public int[] getMarkiert1(){
     	return markiert1;
     }
     
+    /**
+     * setzt das grün markierte Feld
+     * @param a Koordinate des Feldes
+     */
     public void setMarkiert2(int[] a){
     	markiert2 = a;
     }
 
+    /**
+     * Gibt die Koordinate des grün markierten feldes Zurück
+     * @return Koordinate des grün markierten Feldes
+     */
     public int[] getMarkiert2(){
     	return markiert2;
     }

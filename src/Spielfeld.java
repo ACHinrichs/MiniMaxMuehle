@@ -14,11 +14,22 @@ public class Spielfeld
     private int runde=1;
     private boolean steinEntfernen = false;
 
+    /**
+     * Konstruktor für die Klasse Spielfeld
+     */
     public Spielfeld()
     {
 
     }
 
+    /**
+     * Generiert ein neues Spielfeld mit angegebenen Spezifikationen 
+     * @param pSpielfeld aktuelle Spielsituation
+     * @param pSpielphase Spielphase
+     * @param pSpieler der Spieler der am Zug ist
+     * @param pSteinEntfernen Ob ein Stein entfernt werden muss
+     * @param pRunde die Runde
+     */
     public Spielfeld(int[][][] pSpielfeld,byte pSpielphase,byte pSpieler,boolean pSteinEntfernen,int pRunde)
     {
         spielfeld = pSpielfeld;
@@ -28,54 +39,54 @@ public class Spielfeld
         runde = pRunde;
     }
 
-    /*
-    public void setSpielphase(byte pPhase)
-    {
-    spielphase = pPhase;
-    }
+    /**
+     * Gibt die Aktuelle Spielphase zurück
+     * @return Spielphase
      */
     public byte getSpielphase()
     {
         return spielphase;
     }
 
-    /*
-    public void setSpieler(byte pSpieler)
-    {
-    spieler = pSpieler;
-    }
+    /**
+     * Gibt den aktuellen Spieler zurueck
+     * @return Spieler
      */
     public byte getSpieler()
     {
         return spieler;
     }
 
-    /*
-    public void setSpielfeld(byte[][][] pSpielfeld)
-    {
-    spielfeld = pSpielfeld;
-    }
+    /**
+     * Gibt das Aktuelle Spielfeld als dreidimensionales Int-Array zurueck
+     * @return Spielfeld
      */
     public int[][][] getSpielfeld()
     {
         return spielfeld;
     }
 
-    /*
-    public void setSteinEntfernen(boolean pSteinEntfernen)
-    {
-    steinEntfernen = pSteinEntfernen;
-    }
+    /**
+     * Gibt zurueck ob ein Stein entfernt werden darf
+     * @return Boolean
      */
     public boolean getSteinEntfernen()
     {
         return steinEntfernen;
     }
 
+    /**
+     * Gibt die nummer der aktuelle Runde zurueck
+     * @return Runde
+     */
     public int getRunde(){
         return runde;
     }
 
+    /**
+     * Kopiert das Spielfeld
+     * @return Kopie des Spielfeldes
+     */
     public Spielfeld kopieren()
     {
         //Kopie des Spielfeld.Arrays erzeugen
@@ -92,6 +103,11 @@ public class Spielfeld
         return result;
     }
 
+    /**
+     * Zaehlt die Steine eines SPielers
+     * @param aSpieler Spieler dessen Steine zu zaehlen sind
+     * @return anzahl der Steine
+     */
     public int zaehleSteine(byte aSpieler)
     {
         int result = 0;
@@ -107,11 +123,25 @@ public class Spielfeld
         return result;
     }
 
+    /**
+     * Prueft ob das Angegebene Feld existiert
+     * @param x
+     * @param y
+     * @param z
+     * @return Warheitswert ob das Feld existiert
+     */
     public static boolean feldExistiert(int x, int y, int z)
     {
         return (x<3)&&(x>=0)&&(y<3)&&(y>=0)&&(z<3)&&(z>=0)&&!((x==1)&&(y==1));
     }
 
+    /**
+     * Prueft ob der Angegebene Stei  in einer Muehle steht
+     * @param x
+     * @param y
+     * @param z
+     * @return Wahrheitswert, ob der Stein in einer Muehle steht
+     */
     public boolean pruefeMuehle(int x, int y, int z)
     {
         if(y!=1){
@@ -132,6 +162,13 @@ public class Spielfeld
         return false;
     }
 
+    /**
+     * Prueft ob der angegebene Stein sioch bewegen kann
+     * @param x
+     * @param y
+     * @param z
+     * @return Wahrheitswert, ob der Stein sich bewegen kann
+     */
     public boolean pruefeZugMoeglichkeit(int x, int y, int z){
         if((feldExistiert(x+1,y,z)&&spielfeld[x+1][y][z]==0)||
         (feldExistiert(x-1,y,z)&&spielfeld[x-1][y][z]==0)||
@@ -145,6 +182,10 @@ public class Spielfeld
         return false;
     }
 
+    /**
+     * Prueft welcher Spieler gewonnen hat, wenn einer gewonnen hat
+     * @return Spieler der Gewonnen hat
+     */
     public byte pruefeAufSieger()
     {
         if(zaehleSteine((byte)-1)<3){//SPieler -1 hat verloren, wenn er weniger als drei Steine hat
@@ -178,6 +219,10 @@ public class Spielfeld
         return 0;
     }
 
+    /**
+     * prueft ob das Spiel zu ende ist
+     * @return Wahrheitswert, ob das Spiel zu ende ist
+     */
     public boolean pruefeAufEnde(){
         if(spielphase == 0){
             return false;
@@ -213,6 +258,16 @@ public class Spielfeld
         return ende;
     }
     
+    /**
+     * Prueft ob der Angegebene Zug legal ist
+     * @param x
+     * @param y
+     * @param z
+     * @param zielX
+     * @param zielY
+     * @param zielZ
+     * @return Wahrheitswert, ob der Angegeben Zug Legal ist
+     */
     public boolean zugLegal(int x,int y,int z,int zielX,int zielY,int zielZ){
     	return (zaehleSteine(spieler)==3)||//Der Spieler muss entweder süringen dürfen, oder
     		   (Math.abs(x-zielX)+Math.abs(y-zielY)<=1 && 
@@ -222,8 +277,11 @@ public class Spielfeld
     		   			(x!=1 && y==1)))));
     }
 
-    /*
-     * 
+    /**
+     * Setzt eine  Stein auf die angegebene Koordinaten, sofern dies erlaubt ist
+     * @param x
+     * @param y
+     * @param z
      * @result 0 bedeutet illegaler Zug, 1 bedutet zug erfolgreich, 2 bedeutet zug erfolgreich, muele gebildet
      */
     public byte setzeStein(int x, int y, int z)
@@ -244,9 +302,13 @@ public class Spielfeld
         return 0; // Spiel ungÃ¼ltig
     }
 
-    /*
-     * 
+    /**
+     * Entfernt den Angegeben zug, sofern das erlaubt ist
+     * @param x
+     * @param y
+     * @param z
      * @result 0 bedeutet illegaler Zug, 1 bedutet zug erfolgreich
+     
      */
     public byte entferneStein(int x, int y, int z)
     {
@@ -268,8 +330,14 @@ public class Spielfeld
         return 0; // Spiel ungÃ¼ltig
     }
 
-    /*
-     * 
+    /**
+     * Bewegt eine Stein germäß den uebergebenen Koordinaten, sofern dies erlaubt ist
+     * @param x
+     * @param y
+     * @param z
+     * @param zielX
+     * @param zielY
+     * @param zielZ
      * @result 0 bedeutet illegaler Zug, 1 bedutet zug erfolgreich, 2 bedeutet zug erfolgreich, muele gebildet
      */
     public byte bewegeStein(int x, int y, int z, int zielX, int zielY, int zielZ)
@@ -297,6 +365,7 @@ public class Spielfeld
         return 0; // Spielzug ungÃ¼ltig
     }
 
+
     public boolean equals(Object obj)
     {
     	//if( (Arrays.equals(spielfeld,((Spielfeld)obj).getSpielfeld())))
@@ -307,6 +376,10 @@ public class Spielfeld
         (steinEntfernen==((Spielfeld)obj).getSteinEntfernen());
     }
 
+    /**
+     * Fuert die heuristik fuer die aktuelle Situation durch
+     * @return bewertung
+     */
     public int bewerte(){
         //HEURISTIK
         double ergebniss = 0;
@@ -327,6 +400,9 @@ public class Spielfeld
         return (int)Math.round(ergebniss);
     }
     
+    /**
+     * Aktuallisiert den Spieler, und ggf. die Rundenzahl
+     */
     private void naechsterSpieler(){
     	spieler = (byte)-spieler;
         if(spieler==1){

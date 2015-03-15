@@ -11,11 +11,21 @@ public class Computergegner
     
     private Spielbaum spielbaum;
     
+    /**
+     * Konstruktor für die Klasse Computergegner
+     * @param aSpielfeld das Spielfeld mit welchem der Spielbaum initialisiert wird
+     */
     public Computergegner(Spielfeld aSpielfeld)
     {
         spielbaum = new Spielbaum(aSpielfeld.kopieren());
     }
 
+    /**
+     * Diese Methode veranlasst den Computer seinen zug zu berechnen und auf die Situation anzuwenden
+     * Ausserdem Variert der Computer die Rekursionstiefe für den nächsten Zug, je nach Zeit die zur Berechnung benötigt wurde
+     * @param aktuelleSituation Das Spielfeld wie es im moment ist
+     * @return					Die Zeit, welche der Computer zum ziehen gebraucht hat
+     */
     public long Ziehen(Spielfeld aktuelleSituation){
         spielbaum = spielbaum.finde(aktuelleSituation);//spielbaum auf aktuelle situation setzen
         
