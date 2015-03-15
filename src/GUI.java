@@ -33,9 +33,6 @@ public class GUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					int [][][] a = {{{0,0,1},{0,0,1},{0,0,1}},{{0,0,1},{0,0,1},{0,0,1}},{{0,0,1},{0,0,1},{0,0,1}}};
-					int [][][] b = {{{0,0,1},{0,0,1},{0,0,1}},{{0,0,1},{0,0,1},{0,0,1}},{{0,0,1},{0,0,1},{0,0,1}}};
-					System.out.println(Arrays.deepEquals(a, b));
 					GUI frame = new GUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
