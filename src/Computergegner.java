@@ -106,10 +106,12 @@ public class Computergegner
         System.out.println("Computer ist gezogen");
         
         //Schließlich noch die Rekursionstiefe für den Nächsten zug anpassen
-        if(dauer < 5000 && aktuelleSituation.getSpielphase()>0){
+        if(dauer < 5000 && aktuelleSituation.getSpielphase()>0 && rekursionstiefe <6){
         	rekursionstiefe++;
-        }else if(dauer > 30000){
+        	System.out.println(rekursionstiefe);
+        }else if(dauer > 30000 && rekursionstiefe > 3){
         	rekursionstiefe--;
+        	System.out.println(rekursionstiefe);
         }
         
         return dauer;

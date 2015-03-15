@@ -115,17 +115,37 @@ public class Spielbaum
             if(erstesKind == null){//Sollten keine Kinder vorhanden sein, werden sie generiert
                 generiereKinder();
             }
-            Spielbaum aktKind = erstesKind;
-            kosten = 0;
-            while(aktKind != null){
-                int kindKosten = aktKind.Minimax(tiefe-1);
-                if(kindKosten*aktKind.getSpielfeld().getSpieler()>kosten){
-                    kosten=kindKosten;
-                }
-                aktKind = aktKind.getNeachstenBruder();
+            if(spielfeld.getSpieler()==-1){
+            	kosten = Integer.MAX_VALUE;
+            	Spielbaum aktKind = getErstesKind();
+            	while(aktKind != null){
+            		try{
+            		  aktKind.Minimax(tiefe-1);
+            		}catch(Exception e){
+            			aktKind.Minimax(0);
+            		}
+            		if(aktKind.getKosten()<kosten){
+            			kosten = aktKind.getKosten();
+            		}
+            		aktKind = aktKind.getNeachstenBruder();
+            	}
+            }else{
+            	kosten = -Integer.MAX_VALUE;
+            	Spielbaum aktKind = getErstesKind();
+            	while(aktKind != null){
+            		try{
+            		  aktKind.Minimax(tiefe-1);
+            		}catch(Exception e){
+            			aktKind.Minimax(0);
+            		}
+            		if(aktKind.getKosten()>kosten){
+            			kosten = aktKind.getKosten();
+            		}
+            		aktKind = aktKind.getNeachstenBruder();
+            	}
             }
-            //System.out.println("KNOTEN AUF EBENE "+tiefe+"BEWERTET");
         }
+        //System.out.println(tiefe +" " + kosten);
         return kosten;
     }
 

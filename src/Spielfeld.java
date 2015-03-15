@@ -290,7 +290,7 @@ public class Spielfeld
         (feldExistiert(x,y,z))&&//... das Feld existiert,...
         (spielfeld[x][y][z]==0)&&//...das Feld frei ist...
         (!steinEntfernen)){//... und falls eine Mühle fertig gestellt wurde, der Stein schon entfernt wurde
-        	System.out.println("Spieler "+spieler+" setzt Stein auf "+x+","+y+","+z);
+        	//System.out.println("Spieler "+spieler+" setzt Stein auf "+x+","+y+","+z);
             spielfeld[x][y][z]=spieler;
             if(pruefeMuehle(x,y,z)){
                 steinEntfernen=true;
@@ -316,7 +316,7 @@ public class Spielfeld
         (feldExistiert(x,y,z))&&//...das feld gültig ist,...
         (spielfeld[x][y][z]==-spieler)&&//...auf dem Feld ein Frmder Sten steht...
         (!pruefeMuehle(x, y, z))){//und dr Stein in keiner Mühle steht
-        	System.out.println("Spieler "+spieler+" entfernt Stein auf "+x+","+y+","+z);
+        	//System.out.println("Spieler "+spieler+" entfernt Stein auf "+x+","+y+","+z);
             spielfeld[x][y][z]=0;
             steinEntfernen = false;
             naechsterSpieler();
@@ -351,7 +351,7 @@ public class Spielfeld
         (spielfeld[x][y][z]==spieler)&&//... der Stein der bewegt wird muss dem Spieler der am Zug ist gehören...
         (spielfeld[zielX][zielY][zielZ]==0)&&//... das Zielfeld muss frei sein...
         (!steinEntfernen)){//... und falls eine Mühle fertig geworden ist wurde der Stein schon entfernt
-        	System.out.println("Spieler "+spieler+" bewegt Stein von "+x+","+y+","+z+" nach "+zielX+","+zielY+","+zielZ);
+        	//System.out.println("Spieler "+spieler+" bewegt Stein von "+x+","+y+","+z+" nach "+zielX+","+zielY+","+zielZ);
             spielfeld[x][y][z]=0;
             spielfeld[zielX][zielY][zielZ]=spieler;
             if(pruefeMuehle(zielX,zielY,zielZ)){
@@ -390,7 +390,7 @@ public class Spielfeld
             ergebniss = ergebniss + Math.pow((spielfeld[0][0][z]+spielfeld[1][0][z]+spielfeld[2][0][z]), 3);
             ergebniss = ergebniss + Math.pow((spielfeld[0][2][z]+spielfeld[1][2][z]+spielfeld[2][2][z]), 3);
             ergebniss = ergebniss + Math.pow((spielfeld[0][0][z]+spielfeld[0][1][z]+spielfeld[0][2][z]), 3);
-            ergebniss = ergebniss + Math.pow((spielfeld[0][0][z]+spielfeld[2][1][z]+spielfeld[2][2][z]), 3);
+            ergebniss = ergebniss + Math.pow((spielfeld[2][0][z]+spielfeld[2][1][z]+spielfeld[2][2][z]), 3);
         }
         //Bewertung der Steine auf den "Geraden"
         ergebniss = ergebniss + Math.pow((spielfeld[1][0][0]+spielfeld[1][0][1]+spielfeld[1][0][2]), 3);

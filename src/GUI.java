@@ -25,6 +25,7 @@ public class GUI extends JFrame {
 	private JLabel lblAusgabe;
 	private JLabel lblSpielinfo;
 	private JPanel panel;
+	private JButton btnComputerBeginnt;
 
 	/**
 	 * Launch the application.
@@ -33,6 +34,26 @@ public class GUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					/*
+					System.out.println((new Spielfeld(new int[][][] {	{	{0, 0, 0},
+						{0, 0, 0}, 
+						{0, 0, 0}}, 
+					{	{0, 0, 0},
+						{0, 0, 0},
+						{0, 0, 0}},
+					{	{0, 0, 1},
+						{0, 0, 1},
+						{0, 0, 1}}},(byte)0,(byte)0,false,0)).bewerte());
+					System.out.println((new Spielfeld(new int[][][] {	{	{0, 0, 0},
+						{0, 0, 0}, 
+						{0, 0, 0}}, 
+					{	{0, 0, 0},
+						{0, 0, 0},
+						{0, 0, 0}},
+					{	{0, 0, 0},
+						{0, 0, 0},
+						{1, 1, 1}}},(byte)0,(byte)0,false,0)).bewerte());
+						*/
 					GUI frame = new GUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -151,6 +172,15 @@ public class GUI extends JFrame {
 									}
 								});
 								panel.add(btnEntfernen, "2, 6");
+								
+								btnComputerBeginnt = new JButton("Computer Beginnt");
+								btnComputerBeginnt.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent arg0) {
+										btnComputerBeginnt.setEnabled(false);
+										computerzug();
+									}
+								});
+								panel.add(btnComputerBeginnt, "2, 8");
 
 	}
 
@@ -181,7 +211,7 @@ public class GUI extends JFrame {
 			text = text + "Weiss ist am Zug";
 			break;
 		case -1:
-			text = text + "Schwarz (der Computer) ist am Zug";
+			text = text + "Schwarz ist am Zug";
 			break;
 		default:
 			text = text + "Spiel beendet - Sieger ist ";
