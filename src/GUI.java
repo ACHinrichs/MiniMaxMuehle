@@ -92,6 +92,7 @@ public class GUI extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
 		
 				JButton btnSetzen = new JButton("Setzen");
+				btnSetzen.setToolTipText("Das Feld mit der linken Maustaste w\u00E4hlen");
 				btnSetzen.addActionListener(new ActionListener() {
 					public void actionPerformed(final ActionEvent arg0) {
 						int[] markiert1 = grafischesSpielfeld.getMarkiert1();
@@ -111,6 +112,7 @@ public class GUI extends JFrame {
 				panel.add(btnSetzen, "2, 2");
 		
 				JButton btnBewegen = new JButton("Bewegen");
+				btnBewegen.setToolTipText("Den Stein der Bewegt werden soll mit der linken Maustaste ausw\u00E4hlen, das Zielfeld mit der Rechten");
 				btnBewegen.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						int[] markiert1 = grafischesSpielfeld.getMarkiert1();
@@ -132,6 +134,7 @@ public class GUI extends JFrame {
 				panel.add(btnBewegen, "2, 4");
 						
 								JButton btnEntfernen = new JButton("Entfernen");
+								btnEntfernen.setToolTipText("Den Stein mit der Linken Maustaste w\u00E4hlen");
 								btnEntfernen.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent arg0) {
 										int[] markiert1 = grafischesSpielfeld.getMarkiert1();
