@@ -26,6 +26,7 @@ public class GUI extends JFrame {
 	private JLabel lblSpielinfo;
 	private JPanel panel;
 	private JButton btnComputerBeginnt;
+	private JLabel lblBewertung;
 
 	/**
 	 * Launch the application.
@@ -34,26 +35,6 @@ public class GUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					/*
-					System.out.println((new Spielfeld(new int[][][] {	{	{0, 0, 0},
-						{0, 0, 0}, 
-						{0, 0, 0}}, 
-					{	{0, 0, 0},
-						{0, 0, 0},
-						{0, 0, 0}},
-					{	{0, 0, 1},
-						{0, 0, 1},
-						{0, 0, 1}}},(byte)0,(byte)0,false,0)).bewerte());
-					System.out.println((new Spielfeld(new int[][][] {	{	{0, 0, 0},
-						{0, 0, 0}, 
-						{0, 0, 0}}, 
-					{	{0, 0, 0},
-						{0, 0, 0},
-						{0, 0, 0}},
-					{	{0, 0, 0},
-						{0, 0, 0},
-						{1, 1, 1}}},(byte)0,(byte)0,false,0)).bewerte());
-						*/
 					GUI frame = new GUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -106,12 +87,20 @@ public class GUI extends JFrame {
 		panel = new JPanel();
 		getContentPane().add(panel, "3, 4, right, fill");
 		panel.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC, }, new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, }));
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
 		
 				JButton btnSetzen = new JButton("Setzen");
 				btnSetzen.setToolTipText("Das Feld mit der linken Maustaste w\u00E4hlen");
@@ -173,14 +162,17 @@ public class GUI extends JFrame {
 								});
 								panel.add(btnEntfernen, "2, 6");
 								
-								btnComputerBeginnt = new JButton("Computer Beginnt");
+								btnComputerBeginnt = new JButton("Computerzug");
+								btnComputerBeginnt.setToolTipText("L\u00E4sst den Computer die n\u00E4chste Runde ziehen");
 								btnComputerBeginnt.addActionListener(new ActionListener() {
 									public void actionPerformed(ActionEvent arg0) {
-										btnComputerBeginnt.setEnabled(false);
 										computerzug();
 									}
 								});
 								panel.add(btnComputerBeginnt, "2, 8");
+								
+								lblBewertung = new JLabel("Bewertung");
+								panel.add(lblBewertung, "2, 10");
 
 	}
 
@@ -189,15 +181,18 @@ public class GUI extends JFrame {
 	 */
 	private void computerzug() {
 		if(spielfeld.pruefeAufEnde()){
+			updateGUI();
 			panel.setEnabled(false);
 			return;
 		}
+		panel.setEnabled(false);
 		long dauer = gegner.Ziehen(spielfeld);
 		lblAusgabe.setText("Computerzug in "
 				+ dauer / 1000 + "s");
 		if(spielfeld.pruefeAufEnde()){
 			panel.setEnabled(false);
 		}
+		panel.setEnabled(true);
 		updateGUI();
 	}
 
@@ -230,6 +225,7 @@ public class GUI extends JFrame {
 
 		}
 		lblSpielinfo.setText(text);
+		lblBewertung.setText("Bewertung d. Situat.: "+spielfeld.bewerte());
 		repaint();
 		revalidate();
 	}
