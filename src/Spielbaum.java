@@ -2,7 +2,7 @@ import java.util.*;
 /**
  * Der Spielbaum hat als Inhaltsobjekt das Spielfeld gespeichert
  * Die Klasse Spielbaum stellt gleichzeitig auch die Koten dar,
- * das erste Kind ist im Knoten referenziert genau wie der Nächste Bruder.
+ * das erste Kind ist im Knoten referenziert genau wie der Naechste Bruder.
  * 
  * 
  * @author A. C. Hinrichs
@@ -16,7 +16,7 @@ public class Spielbaum
     private int kosten;
 
     /**
-     * Konstruktor für den Spielbaum ohne Parameter
+     * Konstruktor fuer den Spielbaum ohne Parameter
      */
     public Spielbaum(){
         bruder=null;

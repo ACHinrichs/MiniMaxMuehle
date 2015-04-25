@@ -1,7 +1,7 @@
 import java.lang.Math;
 import java.util.*;
 /**
- * Beschreiben Sie hier die Klasse Spielfeld.
+ * DIe Klasse Spielfeld stellt alle moeglichkeiten bereit, um Spielstaende zu SPeichern
  * 
  * @author A.C.Hinrihs 
  * @version 2015-02-22
@@ -15,7 +15,7 @@ public class Spielfeld
     private boolean steinEntfernen = false;
 
     /**
-     * Konstruktor für die Klasse Spielfeld
+     * Konstruktor fuer die Klasse Spielfeld
      */
     public Spielfeld()
     {
@@ -40,7 +40,7 @@ public class Spielfeld
     }
 
     /**
-     * Gibt die Aktuelle Spielphase zurück
+     * Gibt die Aktuelle Spielphase zurueck
      * @return Spielphase
      */
     public byte getSpielphase()
@@ -269,7 +269,7 @@ public class Spielfeld
      * @return Wahrheitswert, ob der Angegeben Zug Legal ist
      */
     public boolean zugLegal(int x,int y,int z,int zielX,int zielY,int zielZ){
-    	return (zaehleSteine(spieler)==3)||//Der Spieler muss entweder süringen dürfen, oder
+    	return (zaehleSteine(spieler)==3)||//Der Spieler muss entweder springen duerfen, oder
     		   (Math.abs(x-zielX)+Math.abs(y-zielY)<=1 && 
     		   		(Math.abs(z-zielZ)==0 || 
     		   			(Math.abs(x-zielX)+Math.abs(y-zielY)+Math.abs(z-zielZ)==1 &&
@@ -289,8 +289,7 @@ public class Spielfeld
         if((spielphase==0)&&//wenn wir im moment in der Setz-Phase sind, ...
         (feldExistiert(x,y,z))&&//... das Feld existiert,...
         (spielfeld[x][y][z]==0)&&//...das Feld frei ist...
-        (!steinEntfernen)){//... und falls eine MÃ¼hle fertig gestellt wurde, der Stein schon entfernt wurde
-        	//System.out.println("Spieler "+spieler+" setzt Stein auf "+x+","+y+","+z);
+        (!steinEntfernen)){//... und falls eine Muehle fertig gestellt wurde, der Stein schon entfernt wurde
             spielfeld[x][y][z]=spieler;
             if(pruefeMuehle(x,y,z)){
                 steinEntfernen=true;
@@ -299,7 +298,7 @@ public class Spielfeld
             naechsterSpieler();
             return 1;
         }
-        return 0; // Spiel ungÃ¼ltig
+        return 0; // Spiel ungueltig
     }
 
     /**
@@ -313,25 +312,19 @@ public class Spielfeld
     public byte entferneStein(int x, int y, int z)
     {
         if((steinEntfernen)&&   //wenn im moment ein Stein entfernt werden darf,...
-        (feldExistiert(x,y,z))&&//...das feld gÃ¼ltig ist,...
+        (feldExistiert(x,y,z))&&//...das feld gueltig ist,...
         (spielfeld[x][y][z]==-spieler)&&//...auf dem Feld ein Frmder Sten steht...
-        (!pruefeMuehle(x, y, z))){//und dr Stein in keiner MÃ¼hle steht
-        	//System.out.println("Spieler "+spieler+" entfernt Stein auf "+x+","+y+","+z);
+        (!pruefeMuehle(x, y, z))){//und dr Stein in keiner Muehle steht
             spielfeld[x][y][z]=0;
             steinEntfernen = false;
             naechsterSpieler();
             return 1;
-        }/*
-        System.out.println("steinEntfernen: "+steinEntfernen);
-        System.out.println("feldExistiert(x,y,z): "+feldExistiert(x,y,z));
-        System.out.println("spielfeld[x][y][z]: "+spielfeld[x][y][z]);
-        System.out.println("spieler: "+spieler);
-        System.out.println("pruefeMuehle(x, y, z): "+pruefeMuehle(x, y, z));*/
-        return 0; // Spiel ungÃ¼ltig
+        }
+        return 0; // Spiel unguetig
     }
 
     /**
-     * Bewegt eine Stein germäß den uebergebenen Koordinaten, sofern dies erlaubt ist
+     * Bewegt eine Stein germaess den uebergebenen Koordinaten, sofern dies erlaubt ist
      * @param x
      * @param y
      * @param z
@@ -345,13 +338,12 @@ public class Spielfeld
         if((spieler != 0)&&//Das Spiel muss Laufen (es muss ein Spieler an der Reihe sein)
         !((x==zielX)&&(y==zielY)&&(z==zielZ))&&//...es muss sich um zwei unterschiedliche Felder Handeln ...
         (feldExistiert(x,y,z))&&
-        (feldExistiert(zielX,zielY,zielZ))&&//... beide mÃ¼ssen Existieren...
-        (spielphase==1)&&//...wir dÃ¼rfen uns nichtmehr in der setz-phase befinden...
+        (feldExistiert(zielX,zielY,zielZ))&&//... beide muessen Existieren...
+        (spielphase==1)&&//...wir duerfen uns nichtmehr in der setz-phase befinden...
         (zugLegal(x,y,z,zielX,zielY,zielZ))&&//... der Zug muss legal sein,...
-        (spielfeld[x][y][z]==spieler)&&//... der Stein der bewegt wird muss dem Spieler der am Zug ist gehÃ¶ren...
+        (spielfeld[x][y][z]==spieler)&&//... der Stein der bewegt wird muss dem Spieler der am Zug ist gehoeren...
         (spielfeld[zielX][zielY][zielZ]==0)&&//... das Zielfeld muss frei sein...
-        (!steinEntfernen)){//... und falls eine MÃ¼hle fertig geworden ist wurde der Stein schon entfernt
-        	//System.out.println("Spieler "+spieler+" bewegt Stein von "+x+","+y+","+z+" nach "+zielX+","+zielY+","+zielZ);
+        (!steinEntfernen)){//... und falls eine Muehle fertig geworden ist wurde der Stein schon entfernt
             spielfeld[x][y][z]=0;
             spielfeld[zielX][zielY][zielZ]=spieler;
             if(pruefeMuehle(zielX,zielY,zielZ)){
@@ -361,15 +353,12 @@ public class Spielfeld
             naechsterSpieler();
             return 1;
         }
-        //System.out.println(feldExistiert(x,y,z)+" "+feldExistiert(zielX,zielY,zielZ));
-        return 0; // Spielzug ungÃ¼ltig
+        return 0; // Spielzug ungueltig
     }
 
 
     public boolean equals(Object obj)
     {
-    	//if( (Arrays.equals(spielfeld,((Spielfeld)obj).getSpielfeld())))
-    	//	System.out.println("GLEICH!");
         return (Arrays.deepEquals(spielfeld,((Spielfeld)obj).getSpielfeld()))&&
         (spielphase==((Spielfeld)obj).getSpielphase())&&
         (spieler==((Spielfeld)obj).getSpieler())&&

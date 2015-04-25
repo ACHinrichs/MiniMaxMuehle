@@ -108,10 +108,10 @@ public class Computergegner
         //Schließlich noch die Rekursionstiefe für den Nächsten zug anpassen
         if(dauer < 5000 && aktuelleSituation.getSpielphase()>0 && rekursionstiefe <5){
         	rekursionstiefe++;
-        	System.out.println(rekursionstiefe);
-        }else if(dauer > 30000 && rekursionstiefe > 3){
+        	System.out.println("Neue Rekursionstiefe: "+rekursionstiefe);
+        }else if(dauer > 20000 && rekursionstiefe > 3){
         	rekursionstiefe--;
-        	System.out.println(rekursionstiefe);
+        	System.out.println("Neue Rekursionstiefe: "+rekursionstiefe);
         }
         
         return dauer;
